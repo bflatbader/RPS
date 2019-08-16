@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors</title>
+</head>
+
+<body>
+
+  <div id="game">
+    Press r, p, or s to make a selection!
+  </div>
+
+  <script type="text/javascript">
+
+    // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
+    var computerChoices = ["r", "p", "s"];
+
+    // Initialize result counts
+    var tie = 0;
+    var win = 0;
+    var lose = 0;    
+
+
+    // This function is run whenever the user presses a key.
+    document.onkeyup = function(event) {
+
+        // Determines which key was pressed.
+        var userGuess = event.key;
+
+        // Randomly chooses a choice from the options array. This is the Computer's guess.
+        var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+        // Determine results and add to each result tally
+        if ( userGuess == computerGuess ) {
+            var result = "Tie";
+            tie++;
+        } else if (userGuess == "r" && computerGuess == "s" || userGuess == "p" && computerGuess == "r" || userGuess == "s" && computerGuess == "p") {
+        var result = "Win";
+        win++;
+        } else {
+            var result = "Lose";
+            lose++;
+        }
+
+        // Write result to the game div
+        document.getElementById("game").innerHTML = "You chose: " + userGuess + "<br>Computer chose: " + computerGuess + "<br>Result: " + result + "<br><br>Ties: " + tie + "<br>Wins: " + win + "<br>Losses: " + lose;
+
+    };
+  </script>
+
+</body>
+
+</html>
